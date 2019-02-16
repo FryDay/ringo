@@ -83,7 +83,7 @@ func (r *Ringo) Authenticate() error {
 			Device: &device{
 				HardwareID: hardwareID,
 				Metadata: &metadata{
-					APIVersion: 9, // TODO: Make configurable
+					APIVersion: r.Config.APIVersion,
 				},
 				OS: "android",
 			},
@@ -92,7 +92,7 @@ func (r *Ringo) Authenticate() error {
 		return err
 	}
 
-	rel, err := url.Parse("clients_api/session?api_version=9") // TODO: Make configurable
+	rel, err := url.Parse(fmt.Sprintf("clients_api/session?api_version=%d", r.Config.APIVersion))
 	if err != nil {
 		return err
 	}
