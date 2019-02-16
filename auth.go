@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 )
@@ -31,13 +30,12 @@ type device struct {
 }
 
 type metadata struct {
-	APIVersion int64 `json:"api_version"`
+	APIVersion int `json:"api_version"`
 }
 
 // Authenticate sets token based on login information.
 func (r *Ringo) Authenticate() error {
 	if r.Config.Token != "" {
-		log.Println("already authenticated")
 		return nil
 	}
 
