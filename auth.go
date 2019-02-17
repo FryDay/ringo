@@ -20,10 +20,10 @@ type tokenResponse struct {
 }
 
 type tokenRequest struct {
-	Device *device `json:"device"`
+	Device *clientDevice `json:"device"`
 }
 
-type device struct {
+type clientDevice struct {
 	HardwareID string    `json:"hardware_id"`
 	Metadata   *metadata `json:"metadata"`
 	OS         string    `json:"os"`
@@ -78,7 +78,7 @@ func (r *Ringo) Authenticate() error {
 	}
 	bodyBytes, err = json.Marshal(
 		&tokenRequest{
-			Device: &device{
+			Device: &clientDevice{
 				HardwareID: hardwareID,
 				Metadata: &metadata{
 					APIVersion: r.Config.APIVersion,
